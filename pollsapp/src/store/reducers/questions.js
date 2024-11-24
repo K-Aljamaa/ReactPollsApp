@@ -43,6 +43,11 @@ export function handleAddQuestion(optionOneText, optionTwoText, author) {
     return _saveQuestion({ optionOneText, optionTwoText, author })
       .then((question) => {
         dispatch(addQuestion(question));
+        // Also dispatch to update users reducer
+        dispatch({
+          type: ADD_QUESTION,
+          question
+        });
       });
   };
 }

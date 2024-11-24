@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import PollDetail from './components/PollDetail';
 import NewPoll from './components/NewPoll';
+import Leaderboard from "./components/Leaderboard"
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/questions/:id" element={<PollDetail />} />
           <Route path="/add" element={<NewPoll />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
         </Routes>
       </div>
     </Router>
