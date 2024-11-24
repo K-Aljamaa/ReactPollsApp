@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Component matches snapshot 1`] = `
+<div>
+  <div
+    class="min-h-screen bg-gray-100 flex items-center justify-center"
+  >
+    <div
+      class="bg-white p-8 rounded-lg shadow-md w-96"
+    >
+      <h2
+        class="text-2xl font-bold mb-6 text-center text-gray-800"
+      >
+        Employee Polls
+      </h2>
+      <div
+        class="mb-4"
+      >
+        <label
+          class="block text-gray-700 text-sm font-bold mb-2"
+          for="user"
+        >
+          Select User
+        </label>
+        <select
+          class="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          id="user"
+        >
+          <option
+            value=""
+          >
+            Select a User
+          </option>
+          <option
+            value="sarahedo"
+          >
+            Sarah Edo
+          </option>
+        </select>
+      </div>
+      <button
+        class="w-full py-2 px-4 rounded-md text-white font-medium bg-gray-300 cursor-not-allowed"
+        disabled=""
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</div>
+`;
