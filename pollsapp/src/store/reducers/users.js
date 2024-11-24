@@ -1,11 +1,12 @@
 import { _getUsers } from '../../_DATA';
+import { ADD_QUESTION } from './questions'; // Import the action type from questions reducer
 
 const initialState = {};
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const UPDATE_USER_ANSWER = 'UPDATE_USER_ANSWER';
-export const ADD_QUESTION = 'ADD_QUESTION';
 
+// Action creators
 export function receiveUsers(users) {
   return {
     type: RECEIVE_USERS,
@@ -13,6 +14,7 @@ export function receiveUsers(users) {
   };
 }
 
+// Fetch users function - this is important and should remain
 export function fetchUsers() {
   return (dispatch) => {
     return _getUsers().then((users) => {
@@ -39,13 +41,12 @@ export default function users(state = initialState, action) {
           }
         }
       };
-    case 'ADD_QUESTION':
-      const { author, id } = action.question;
+    case ADD_QUESTION:
       return {
         ...state,
-        [author]: {
-          ...state[author],
-          questions: state[author].questions.concat(id)
+        [action.question.author]: {
+          ...state[action.question.author],
+          questions: state[action.question.author].questions.concat([action.question.id])
         }
       };
     default:

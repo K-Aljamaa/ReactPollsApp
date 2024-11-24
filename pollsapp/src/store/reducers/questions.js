@@ -41,22 +41,26 @@ export function fetchQuestions() {
 export function handleAddQuestion(optionOneText, optionTwoText, author) {
   return (dispatch) => {
     return _saveQuestion({ optionOneText, optionTwoText, author })
-      .then((question) => {
-        dispatch(addQuestion(question));
-        // Also dispatch to update users reducer
-        dispatch({
-          type: ADD_QUESTION,
-          question
-        });
+      .then((formattedQuestion) => {
+        // Single dispatch that will be handled by both reducers
+        dispatch(addQuestion(formattedQuestion));
       });
   };
 }
 
 export function handleAnswerQuestion(authedUser, qid, answer) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     return _saveQuestionAnswer({ authedUser, qid, answer })
       .then(() => {
+        // Update both questions and users
         dispatch(answerQuestion(authedUser, qid, answer));
+        // Dispatch action to update users
+        dispatch({
+          type: 'UPDATE_USER_ANSWER',
+          authedUser,
+          qid,
+          answer
+        });
       });
   };
 }
