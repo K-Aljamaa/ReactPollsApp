@@ -3,9 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from './store/reducers/users';
 import { fetchQuestions } from './store/reducers/questions';
+import Nav from './components/Nav';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import PollDetail from './components/PollDetail';
+import NewPoll from './components/NewPoll';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,17 +18,19 @@ function App() {
     dispatch(fetchQuestions());
   }, [dispatch]);
 
+  if (!authUser) {
+    return <Login />;
+  }
+
   return (
     <Router>
       <div className="App">
-        {!authUser ? (
-          <Login />
-        ) : (
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/questions/:id" element={<PollDetail />} />
-          </Routes>
-        )}
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/questions/:id" element={<PollDetail />} />
+          <Route path="/add" element={<NewPoll />} />
+        </Routes>
       </div>
     </Router>
   );
